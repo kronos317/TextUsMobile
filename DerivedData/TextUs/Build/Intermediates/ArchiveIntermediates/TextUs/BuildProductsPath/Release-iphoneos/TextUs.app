@@ -1,0 +1,1 @@
+/Users/jbruhin/Documents/MobileLife Studio/Code/TextUs/Project/TextUs/DerivedData/TextUs/Build/Intermediates/ArchiveIntermediates/TextUs/InstallationBuildProductsLocation/Applications/TextUs.app
