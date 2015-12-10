@@ -30,6 +30,7 @@
 - (id)initWithDict:(NSDictionary*)dataDict {
     self = [super init];
     if (self) {
+        
         self.content = [Utils checkObjectForNull:[dataDict objectForKey:kMessageContentKey]];
         self.read = [[Utils checkObjectForNull:[dataDict objectForKey:kMessageReadKey]] boolValue];
         self.broadcastId = [[Utils checkObjectForNull:[dataDict objectForKey:kMessageBroadcastIdKey]] stringValue];
