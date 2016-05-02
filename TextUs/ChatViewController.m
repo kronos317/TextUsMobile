@@ -11,7 +11,12 @@
 #import "AuthAPIClient.h"
 #import "Utils.h"
 #import "ContactDetailsViewController.h"
+#import "MessageTemplatesTableViewController.h"
 #import "AppDelegate.h"
+
+static NSString *kFirstNameTemplateKey = @"{{contact.first_name}}";
+static NSString *kLastNameTemplateKey = @"{{contact.last_name}}";
+static NSString *kBusinessNameTemplateKey = @"{{contact.business_name}}";
 
 @interface ChatViewController ()
 
@@ -141,10 +146,19 @@
 }
 
 - (void)setupInputToolbar {
-    self.inputToolbar.contentView.leftBarButtonItem = nil;
+    
+    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 5, 40, 39)];
+    [leftButton setImage:[UIImage imageNamed:@"templates-icon"] forState:UIControlStateNormal];
+//    [leftButton addTarget:self action:@selector(showMessageTemplates:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.inputToolbar.contentView.leftBarButtonItem = leftButton;
+    
     _sendButton = [[UIButton alloc] initWithFrame:self.inputToolbar.contentView.rightBarButtonItem.frame];
     [_sendButton setImage:[UIImage imageNamed:@"sendMessageButton"] forState:UIControlStateNormal];
     self.inputToolbar.contentView.rightBarButtonItem = _sendButton;
+    
+    // to disable emojis...
+    self.inputToolbar.contentView.textView.keyboardType = UIKeyboardTypeASCIICapable;
 }
 
 - (void)setupSendingMessageBusy:(BOOL)busy {
@@ -276,11 +290,18 @@
     BOOL fromUser = NO;
     BOOL fromContact = NO;
     
-    if ([msg.senderIdStr isEqualToString:self.contact.idStr]) {
-        fromContact = YES;
-    }
-    else if ([msg.senderIdStr isEqualToString:self.senderId]) {
+//    if ([msg.senderIdStr isEqualToString:self.contact.idStr]) {
+//        fromContact = YES;
+//    }
+//    else if ([msg.senderIdStr isEqualToString:self.senderId]) {
+//        fromUser = YES;
+//    }
+    
+    if ([msg.senderType isEqualToString:@"User"]) {
         fromUser = YES;
+    }
+    else if ([msg.senderType isEqualToString:@"Contact"]) {
+        fromContact = YES;
     }
 
     if (fromUser || fromContact) {
@@ -331,7 +352,22 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)showMessageTemplates:(id)sender {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UINavigationController *nc = [sb instantiateViewControllerWithIdentifier:@"MessageTemplatesNavigationController"];
+    MessageTemplatesTableViewController *vc = (MessageTemplatesTableViewController*)[nc.viewControllers objectAtIndex:0];
+    vc.delegate = self;
+    [self presentViewController:nc animated:YES completion:nil];
+}
+
 #pragma mark - JSQMessagesViewController method overrides
+
+- (void)didPressAccessoryButton:(UIButton *)sender {
+    
+    [self.inputToolbar.contentView.textView resignFirstResponder];
+
+    [self performSelector:@selector(showMessageTemplates:) withObject:sender afterDelay:0.3];
+}
 
 - (void)didPressSendButton:(UIButton *)button
            withMessageText:(NSString *)text
@@ -653,6 +689,59 @@
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapCellAtIndexPath:(NSIndexPath *)indexPath touchLocation:(CGPoint)touchLocation
 {
     NSLog(@"Tapped cell at %@!", NSStringFromCGPoint(touchLocation));
+}
+
+#pragma mark MessageTemplatesVC delegate
+
+- (void)MessageTemplatesTableViewController:(MessageTemplatesTableViewController *)controller doneWithTemplate:(TUMessageTemplate *)messageTemplate {
+    
+    if (messageTemplate && messageTemplate.content && messageTemplate.content.length) {
+        
+        // replace template fields with contact data
+        NSMutableString *mStr = [NSMutableString stringWithString:messageTemplate.content];
+        if (self.contact.firstName && self.contact.firstName.length) {
+            [mStr replaceOccurrencesOfString:kFirstNameTemplateKey withString:self.contact.firstName options:NSLiteralSearch range:NSMakeRange(0, mStr.length)];
+        }
+        if (self.contact.lastName && self.contact.lastName.length) {
+            [mStr replaceOccurrencesOfString:kLastNameTemplateKey withString:self.contact.lastName options:NSLiteralSearch range:NSMakeRange(0, mStr.length)];
+        }
+        if (self.contact.businessName && self.contact.businessName.length) {
+            [mStr replaceOccurrencesOfString:kBusinessNameTemplateKey withString:self.contact.businessName options:NSLiteralSearch range:NSMakeRange(0, mStr.length)];
+        }
+        
+        NSString *finalStr = [NSString stringWithString:mStr];
+
+        // need to see difference in contentSize height after set the text then call Super
+        // so it can update the view elements
+        
+        UITextView *textView = self.inputToolbar.contentView.textView;
+
+        CGFloat oldHeight = textView.contentSize.height;
+
+        [textView setText:finalStr];
+        
+        CGFloat newHeight = textView.contentSize.height;
+        [textView setContentSize:CGSizeMake(textView.contentSize.width, newHeight)];
+        
+        [self changeInputToolbarTextViewHeightByAmount:newHeight - oldHeight];
+        
+        // enable our send button
+        self.inputToolbar.contentView.rightBarButtonItem.enabled = YES;
+        
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark UITextView delegate
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    if ([textView isFirstResponder]) {
+        if ([[[textView textInputMode] primaryLanguage] isEqualToString:@"emoji"] || ![[textView textInputMode] primaryLanguage]) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 #pragma mark ContactDetailsViewController 

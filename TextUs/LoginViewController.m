@@ -260,6 +260,7 @@ static CGFloat kMarginX = 20.0;
     _passwordField.placeholder = @"Password";
     _passwordField.borderStyle = UITextBorderStyleRoundedRect;
     _passwordField.secureTextEntry = YES;
+    _passwordField.keyboardType = UIKeyboardTypeASCIICapable;
     _passwordField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     _passwordField.autocorrectionType = UITextAutocorrectionTypeNo;
 
@@ -271,7 +272,7 @@ static CGFloat kMarginX = 20.0;
     [_submitButton setTitle:[self submitButtonLabelStr] forState:UIControlStateNormal];
     [_submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _submitButton.titleLabel.font = [UIFont boldSystemFontOfSize:18.0];
-    _submitButton.backgroundColor = [UIColor tuBlueColor];
+    _submitButton.backgroundColor = [UIColor tuLoginButton];
     _submitButton.layer.cornerRadius = 10.0;
     _submitButton.layer.masksToBounds = YES;
     [_submitButton addTarget:self action:@selector(loginHit:) forControlEvents:UIControlEventTouchUpInside];

@@ -7,6 +7,9 @@ dependencies: \
   /Users/jbruhin/Documents/MobileLife\ Studio/Code/TextUs/Project/TextUs/TextUs/TUContact.h \
   /Users/jbruhin/Documents/MobileLife\ Studio/Code/TextUs/Project/TextUs/TextUs/ContactDetailsViewController.h \
   /Users/jbruhin/Documents/MobileLife\ Studio/Code/TextUs/Project/TextUs/TextUs/NewContactViewController.h \
+  /Users/jbruhin/Documents/MobileLife\ Studio/Code/TextUs/Project/TextUs/TextUs/MessageTemplatesTableViewController.h \
+  /Users/jbruhin/Documents/MobileLife\ Studio/Code/TextUs/Project/TextUs/TextUs/MessageTemplateTableViewCell.h \
+  /Users/jbruhin/Documents/MobileLife\ Studio/Code/TextUs/Project/TextUs/TextUs/TUMessageTemplate.h \
   /Users/jbruhin/Documents/MobileLife\ Studio/Code/TextUs/Project/TextUs/TextUs/TUMessage.h \
   /Users/jbruhin/Documents/MobileLife\ Studio/Code/TextUs/Project/TextUs/TextUs/AuthAPIClient.h \
   /Users/jbruhin/Documents/MobileLife\ Studio/Code/TextUs/Project/TextUs/TextUs/Utils.h \

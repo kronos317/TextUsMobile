@@ -12,6 +12,6 @@
 
 + (UIColor*)tuBlueColor;
 + (UIColor*)tuGrayColor;
-
++ (UIColor*)tuLoginButton;
 
 @end

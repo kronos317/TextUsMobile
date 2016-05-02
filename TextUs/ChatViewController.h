@@ -13,8 +13,9 @@
 #import "TUConversation.h"
 #import "ContactDetailsViewController.h"
 #import "TUContact.h"
+#import "MessageTemplatesTableViewController.h"
 
-@interface ChatViewController : JSQMessagesViewController <UIActionSheetDelegate, JSQMessagesComposerTextViewPasteDelegate, ContactDetailViewControllerDelegate> {
+@interface ChatViewController : JSQMessagesViewController <UIActionSheetDelegate, JSQMessagesComposerTextViewPasteDelegate, ContactDetailViewControllerDelegate, MessageTemplatesTableViewControllerDelegate> {
     __strong UIActivityIndicatorView *_spinner;
     __strong UIButton *_sendButton;
     BOOL _requestingData;
@@ -30,6 +31,6 @@
 @property (strong, nonatomic) TUContact *contact;
 @property (strong, nonatomic) NSString *contactDisplayName;
 
-- (void)receiveMessagePressed:(UIBarButtonItem *)sender;
+//- (void)receiveMessagePressed:(UIBarButtonItem *)sender;
 
 @end

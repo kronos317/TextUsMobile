@@ -9,6 +9,7 @@
 #import "Utils.h"
 #import "TUMessage.h"
 #import "TUContact.h"
+#import "TUMessageTemplate.h"
 #import "Reachability.h"
 
 @implementation Utils
@@ -100,6 +101,16 @@
     for (NSDictionary *msgDict in responseArray) {
         TUMessage *message = [[TUMessage alloc] initWithDict:msgDict];
         [mArray addObject:message];
+    }
+    return [NSArray arrayWithArray:mArray];
+}
+
++ (NSArray*)processMessagesTemplateResponse:(NSArray*)responseArray {
+    
+    NSMutableArray *mArray = [[NSMutableArray alloc] initWithCapacity:responseArray.count];
+    for (NSDictionary *msgDict in responseArray) {
+        TUMessageTemplate *template = [[TUMessageTemplate alloc] initWithDict:msgDict];
+        [mArray addObject:template];
     }
     return [NSArray arrayWithArray:mArray];
 }

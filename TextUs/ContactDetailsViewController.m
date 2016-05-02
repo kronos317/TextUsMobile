@@ -230,17 +230,20 @@
     
     [self setupNameLabel];
     
-    _phoneLabel.text = self.contact.phone;
-    _businessNameLabel.text = self.contact.businessName;
+    _phoneLabel.text = self.contact.phone ? self.contact.phone : @"";
+    _businessNameLabel.text = self.contact.businessName ? self.contact.businessName : @"";
 }
 
 - (void)setupNameLabel {
     
-    NSString *combStr = [NSString stringWithFormat:@"%@ %@", self.contact.firstName, self.contact.lastName];
+    NSString *first = self.contact.firstName ? self.contact.firstName : @"";
+    NSString *second = self.contact.lastName ? self.contact.lastName : @"";
+    
+    NSString *combStr = [NSString stringWithFormat:@"%@ %@", first, second];
     
     
     UIFont *unBoldedFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:24];
-    NSRange unBoldedRange = [combStr rangeOfString:[NSString stringWithFormat:@"%@", self.contact.firstName]];
+    NSRange unBoldedRange = [combStr rangeOfString:[NSString stringWithFormat:@"%@", first]];
     
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:combStr attributes:@{NSFontAttributeName: _nameLabel.font}];
     

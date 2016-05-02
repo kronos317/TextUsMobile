@@ -7,6 +7,9 @@ dependencies: \
   /Users/jbruhin/Documents/MobileLife\ Studio/Code/TextUs/Project/TextUs/TextUs/DemoModelData.h \
   /Users/jbruhin/Documents/MobileLife\ Studio/Code/TextUs/Project/TextUs/TextUs/NSUserDefaults+DemoSettings.h \
   /Users/jbruhin/Documents/MobileLife\ Studio/Code/TextUs/Project/TextUs/TextUs/TUConversation.h \
+  /Users/jbruhin/Documents/MobileLife\ Studio/Code/TextUs/Project/TextUs/TextUs/MessageTemplatesTableViewController.h \
+  /Users/jbruhin/Documents/MobileLife\ Studio/Code/TextUs/Project/TextUs/TextUs/MessageTemplateTableViewCell.h \
+  /Users/jbruhin/Documents/MobileLife\ Studio/Code/TextUs/Project/TextUs/TextUs/TUMessageTemplate.h \
   /Users/jbruhin/Documents/MobileLife\ Studio/Code/TextUs/Project/TextUs/TextUs/AppDelegate.h \
   /Users/jbruhin/Documents/MobileLife\ Studio/Code/TextUs/Project/TextUs/TextUs/CredentialStore.h \
   /Users/jbruhin/Documents/MobileLife\ Studio/Code/TextUs/Project/TextUs/TextUs/TUUser.h \

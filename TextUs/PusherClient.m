@@ -37,29 +37,31 @@
         self.client.authorizationURL = [NSURL URLWithString:kPUSHER_AUTH_URL];
         [self.client connect];
         
-        [self subscribeToChannel];
+        [self subscribeToAccountChannel];
+        
+        [self subscribeToUserChannel]; // do this so server can track if user is connected or not
     }
     return self;
 }
 
-- (void)handleChannelSubscriptionFailure {
+- (void)handleChannelSubscriptionFailureChannel:(PTPusherChannel*)channel {
+    
     if ([[AFNetworkReachabilityManager sharedManager] isReachable]) {
-        [self.client removeAllBindings];
-        _pusherBinding = nil;
-        [self subscribeToChannel];
+        
+        if (channel == _pusherAccountChannel) {
+            [self.client removeAllBindings];
+            _pusherAccountBinding = nil;
+            [self subscribeToAccountChannel];
+        }
+        else {
+            [self subscribeToUserChannel];
+        }
     }
 }
 
-//- (void)checkChannelSubscription {
-//    PTPusherChannel *channel = [self.client channelNamed:[self channelName]];
-//    if (!channel.subscribed) {
-//        [self handleChannelSubscriptionFailure];
-//    }
-//}
-
-- (void)subscribeToChannel {
-    PTPusherChannel *channel = [self.client subscribeToChannelNamed:[self channelName]];
-    _pusherBinding = [channel bindToEventNamed:kPUSHER_EVENT_NAME handleWithBlock:^(PTPusherEvent *channelEvent) {
+- (void)subscribeToAccountChannel {
+    _pusherAccountChannel = [self.client subscribeToChannelNamed:[self channelNameAccount]];
+    _pusherAccountBinding = [_pusherAccountChannel bindToEventNamed:kPUSHER_EVENT_NAME handleWithBlock:^(PTPusherEvent *channelEvent) {
         // channelEvent.data is a NSDictianary of the JSON object received
         NSLog(@"channelEvent: %@", channelEvent);
         
@@ -68,9 +70,18 @@
     }];
 }
 
-- (NSString*)channelName {
+- (void)subscribeToUserChannel {
+    _pusherUserChannel = [self.client subscribeToChannelNamed:[self channelNameUser]];
+}
+
+- (NSString*)channelNameAccount {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     return [NSString stringWithFormat:@"%@%@", kPUSHER_CHANNEL_PREFIX, appDelegate.currentUser.accountIdStr];
+}
+
+- (NSString*)channelNameUser {
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    return [NSString stringWithFormat:@"%@%@", kPUSHER_USER_CHANNEL_PREFIX, appDelegate.currentUser.idStr];
 }
 
 - (void)handleNewMessageResponse:(id)responseObject {
@@ -133,7 +144,7 @@
     
 //    if (_subscriptionRetryCount < kSubscriptionRetryAmount) {
 //        [self handleChannelSubscriptionFailure];
-        [self performSelector:@selector(handleChannelSubscriptionFailure) withObject:nil afterDelay:5.0];
+        [self performSelector:@selector(handleChannelSubscriptionFailureChannel:) withObject:channel afterDelay:5.0];
         _subscriptionRetryCount ++;
 //    }
 }

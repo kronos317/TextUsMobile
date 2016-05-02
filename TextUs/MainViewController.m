@@ -121,6 +121,7 @@
     _searchBar.backgroundColor = [UIColor tuGrayColor];
     _searchBar.backgroundImage = [[UIImage alloc] init];
     _searchBar.placeholder = @"Search";
+    _searchBar.keyboardType = UIKeyboardTypeASCIICapable;
     [_tableView setTableHeaderView:_searchBar];
 }
 

@@ -40,6 +40,12 @@
 		447E33D01BFBC8F9007B4FC1 /* MessagesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 447E33CF1BFBC8F9007B4FC1 /* MessagesTableViewCell.xib */; };
 		447E33D31BFBF8F5007B4FC1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 447E33D21BFBF8F5007B4FC1 /* MainViewController.m */; };
 		44A0A1B81BFFF11600544CE0 /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A0A1B71BFFF11600544CE0 /* LaunchViewController.m */; };
+		44B2BD5F1CC170290070060A /* MessageTemplateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B2BD5E1CC170290070060A /* MessageTemplateTableViewCell.m */; };
+		44B2BD621CC172900070060A /* MessageTemplatesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B2BD611CC172900070060A /* MessageTemplatesTableViewController.m */; };
+		44B2BD651CC172F30070060A /* TUMessageTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B2BD641CC172F30070060A /* TUMessageTemplate.m */; };
+		44B2BD671CC17E800070060A /* MessageTemplateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44B2BD661CC17E800070060A /* MessageTemplateTableViewCell.xib */; };
+		44D4CBE11CC556110044AD45 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44D4CBDF1CC556110044AD45 /* Contacts.framework */; };
+		44D4CBE21CC556110044AD45 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44D4CBE01CC556110044AD45 /* ContactsUI.framework */; };
 		44D86DE71C042977004196A0 /* SendMsgButton_blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 44D86DE61C042977004196A0 /* SendMsgButton_blank.png */; };
 		44E0B0381C11148C008F81EF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E0B0371C11148C008F81EF /* AudioToolbox.framework */; };
 		44E0B03A1C111494008F81EF /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E0B0391C111494008F81EF /* CFNetwork.framework */; };
@@ -47,7 +53,6 @@
 		44E0B03E1C1114A1008F81EF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E0B03D1C1114A1008F81EF /* CoreLocation.framework */; };
 		44E0B0401C1114AA008F81EF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E0B03F1C1114AA008F81EF /* QuartzCore.framework */; };
 		44E0B0421C1114B1008F81EF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E0B0411C1114B1008F81EF /* Security.framework */; };
-		44E0B0441C1114B8008F81EF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E0B0431C1114B7008F81EF /* StoreKit.framework */; };
 		44E0B0461C1114BF008F81EF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E0B0451C1114BF008F81EF /* SystemConfiguration.framework */; };
 		44E0B0481C1114C9008F81EF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E0B0471C1114C9008F81EF /* libz.tbd */; };
 		44E0B04A1C1114D3008F81EF /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E0B0491C1114D3008F81EF /* libsqlite3.tbd */; };
@@ -121,6 +126,15 @@
 		447E33D21BFBF8F5007B4FC1 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		44A0A1B61BFFF11600544CE0 /* LaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchViewController.h; sourceTree = "<group>"; };
 		44A0A1B71BFFF11600544CE0 /* LaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchViewController.m; sourceTree = "<group>"; };
+		44B2BD5D1CC170290070060A /* MessageTemplateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTemplateTableViewCell.h; sourceTree = "<group>"; };
+		44B2BD5E1CC170290070060A /* MessageTemplateTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTemplateTableViewCell.m; sourceTree = "<group>"; };
+		44B2BD601CC172900070060A /* MessageTemplatesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTemplatesTableViewController.h; sourceTree = "<group>"; };
+		44B2BD611CC172900070060A /* MessageTemplatesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTemplatesTableViewController.m; sourceTree = "<group>"; };
+		44B2BD631CC172F30070060A /* TUMessageTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUMessageTemplate.h; sourceTree = "<group>"; };
+		44B2BD641CC172F30070060A /* TUMessageTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUMessageTemplate.m; sourceTree = "<group>"; };
+		44B2BD661CC17E800070060A /* MessageTemplateTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageTemplateTableViewCell.xib; sourceTree = "<group>"; };
+		44D4CBDF1CC556110044AD45 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		44D4CBE01CC556110044AD45 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		44D86DE61C042977004196A0 /* SendMsgButton_blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SendMsgButton_blank.png; sourceTree = "<group>"; };
 		44E0B0371C11148C008F81EF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		44E0B0391C111494008F81EF /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -128,7 +142,6 @@
 		44E0B03D1C1114A1008F81EF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		44E0B03F1C1114AA008F81EF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		44E0B0411C1114B1008F81EF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		44E0B0431C1114B7008F81EF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		44E0B0451C1114BF008F81EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		44E0B0471C1114C9008F81EF /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		44E0B0491C1114D3008F81EF /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -143,12 +156,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44D4CBE11CC556110044AD45 /* Contacts.framework in Frameworks */,
+				44D4CBE21CC556110044AD45 /* ContactsUI.framework in Frameworks */,
 				44E0B04E1C1114F0008F81EF /* Social.framework in Frameworks */,
 				44E0B04C1C1114EA008F81EF /* Accounts.framework in Frameworks */,
 				44E0B04A1C1114D3008F81EF /* libsqlite3.tbd in Frameworks */,
 				44E0B0481C1114C9008F81EF /* libz.tbd in Frameworks */,
 				44E0B0461C1114BF008F81EF /* SystemConfiguration.framework in Frameworks */,
-				44E0B0441C1114B8008F81EF /* StoreKit.framework in Frameworks */,
 				44E0B0421C1114B1008F81EF /* Security.framework in Frameworks */,
 				44E0B0401C1114AA008F81EF /* QuartzCore.framework in Frameworks */,
 				44E0B03E1C1114A1008F81EF /* CoreLocation.framework in Frameworks */,
@@ -274,6 +288,8 @@
 				447E33D21BFBF8F5007B4FC1 /* MainViewController.m */,
 				44A0A1B61BFFF11600544CE0 /* LaunchViewController.h */,
 				44A0A1B71BFFF11600544CE0 /* LaunchViewController.m */,
+				44B2BD601CC172900070060A /* MessageTemplatesTableViewController.h */,
+				44B2BD611CC172900070060A /* MessageTemplatesTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -284,6 +300,9 @@
 				440F36F91BF536000027F446 /* MessagesTableViewCell.h */,
 				440F36FA1BF536000027F446 /* MessagesTableViewCell.m */,
 				447E33CF1BFBC8F9007B4FC1 /* MessagesTableViewCell.xib */,
+				44B2BD5D1CC170290070060A /* MessageTemplateTableViewCell.h */,
+				44B2BD5E1CC170290070060A /* MessageTemplateTableViewCell.m */,
+				44B2BD661CC17E800070060A /* MessageTemplateTableViewCell.xib */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -310,6 +329,8 @@
 				4437D9B31BF64D5F0086BF65 /* TUConversation.m */,
 				4437D9B51BF64E070086BF65 /* TUUser.h */,
 				4437D9B61BF64E070086BF65 /* TUUser.m */,
+				44B2BD631CC172F30070060A /* TUMessageTemplate.h */,
+				44B2BD641CC172F30070060A /* TUMessageTemplate.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -325,12 +346,13 @@
 		6403F5445F3C6AA8FE8804C1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				44D4CBDF1CC556110044AD45 /* Contacts.framework */,
+				44D4CBE01CC556110044AD45 /* ContactsUI.framework */,
 				44E0B04D1C1114F0008F81EF /* Social.framework */,
 				44E0B04B1C1114EA008F81EF /* Accounts.framework */,
 				44E0B0491C1114D3008F81EF /* libsqlite3.tbd */,
 				44E0B0471C1114C9008F81EF /* libz.tbd */,
 				44E0B0451C1114BF008F81EF /* SystemConfiguration.framework */,
-				44E0B0431C1114B7008F81EF /* StoreKit.framework */,
 				44E0B0411C1114B1008F81EF /* Security.framework */,
 				44E0B03F1C1114AA008F81EF /* QuartzCore.framework */,
 				44E0B03D1C1114A1008F81EF /* CoreLocation.framework */,
@@ -384,7 +406,15 @@
 				TargetAttributes = {
 					440F36C11BF4EF450027F446 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = 84RX4A4537;
+						DevelopmentTeam = BR8P5U2M4Q;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -414,6 +444,7 @@
 				440F36D51BF4EF450027F446 /* LaunchScreen.storyboard in Resources */,
 				440F36D21BF4EF450027F446 /* Assets.xcassets in Resources */,
 				44D86DE71C042977004196A0 /* SendMsgButton_blank.png in Resources */,
+				44B2BD671CC17E800070060A /* MessageTemplateTableViewCell.xib in Resources */,
 				440F36EC1BF4F5390027F446 /* Media.xcassets in Resources */,
 				440F36D01BF4EF450027F446 /* Main.storyboard in Resources */,
 				447E33D01BFBC8F9007B4FC1 /* MessagesTableViewCell.xib in Resources */,
@@ -482,12 +513,15 @@
 				440F36E91BF4F1DE0027F446 /* AuthAPIClient.m in Sources */,
 				4437D9B11BF64AB80086BF65 /* TUContact.m in Sources */,
 				440F36CA1BF4EF450027F446 /* AppDelegate.m in Sources */,
+				44B2BD651CC172F30070060A /* TUMessageTemplate.m in Sources */,
 				440F36F71BF4F6450027F446 /* ContactsViewController.m in Sources */,
 				4437D9BA1BF66F480086BF65 /* UIColor+TU.m in Sources */,
 				440F36E61BF4F1C10027F446 /* CredentialStore.m in Sources */,
+				44B2BD5F1CC170290070060A /* MessageTemplateTableViewCell.m in Sources */,
 				447E33CA1BFA9C9D007B4FC1 /* ContactDetailsViewController.m in Sources */,
 				440F36C71BF4EF450027F446 /* main.m in Sources */,
 				4437D9B41BF64D5F0086BF65 /* TUConversation.m in Sources */,
+				44B2BD621CC172900070060A /* MessageTemplatesTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,13 +632,13 @@
 			baseConfigurationReference = 623E85D4228B712E0FB3AA2F /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Josh Bruhin (UU33REH5NU)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Text Us Services, Inc (BR8P5U2M4Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Text Us Services, Inc (BR8P5U2M4Q)";
 				INFOPLIST_FILE = TextUs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.textUs.TextUs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "69dc51de-304d-492a-94c5-93262520352e";
 			};
 			name = Debug;
 		};
@@ -613,13 +647,13 @@
 			baseConfigurationReference = B6900C96E06C1190AD053AAE /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Josh Bruhin (UU33REH5NU)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Text Us Services, Inc (BR8P5U2M4Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Text Us Services, Inc (BR8P5U2M4Q)";
 				INFOPLIST_FILE = TextUs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.textUs.TextUs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "69dc51de-304d-492a-94c5-93262520352e";
 			};
 			name = Release;
 		};

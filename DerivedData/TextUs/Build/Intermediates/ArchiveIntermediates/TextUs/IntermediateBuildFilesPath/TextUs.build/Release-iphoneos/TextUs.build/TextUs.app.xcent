@@ -3,16 +3,18 @@
 <plist version="1.0">
 <dict>
 	<key>application-identifier</key>
-	<string>84RX4A4537.com.textUs.TextUs</string>
+	<string>BR8P5U2M4Q.com.textUs.TextUs</string>
 	<key>aps-environment</key>
-	<string>development</string>
-	<key>com.apple.developer.team-identifier</key>
-	<string>84RX4A4537</string>
-	<key>get-task-allow</key>
+	<string>production</string>
+	<key>beta-reports-active</key>
 	<true/>
+	<key>com.apple.developer.team-identifier</key>
+	<string>BR8P5U2M4Q</string>
+	<key>get-task-allow</key>
+	<false/>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>84RX4A4537.com.textUs.TextUs</string>
+		<string>BR8P5U2M4Q.com.textUs.TextUs</string>
 	</array>
 </dict>
 </plist>

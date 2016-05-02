@@ -15,6 +15,7 @@
 + (NSString *)localizedStringForDate:(NSDate*)date withTime:(BOOL)withTime withYear:(BOOL)withYear;
 + (NSInteger)heightForString:(NSString*)theStr withFont:(UIFont*)font forWith:(NSInteger)width;
 + (NSArray*)processMessagesResponse:(NSArray*)responseArray;
++ (NSArray*)processMessagesTemplateResponse:(NSArray*)responseArray;
 + (NSArray*)processContactsResponse:(NSArray*)responseArray;
 + (id) checkObjectForNull:(id) object;
 + (void)showAlertWithTitle:(NSString*)title message:(NSString*)message fromViewController:(UIViewController*)vc;

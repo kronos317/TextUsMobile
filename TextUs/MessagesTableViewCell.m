@@ -81,14 +81,14 @@ static CGFloat kMessageLabelMaxHeight = 40;
 
 - (void)setupNameLabel {
     
-    
+
     NSString *nameStr = self.message.senderName;
 
-    // this is a little goofy, but if the message was from the user, we use the receiver's name
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    if ([self.message.senderIdStr isEqualToString:appDelegate.currentUser.idStr]) {
+    if ([self.message.senderType isEqualToString:@"User"]) {
         nameStr = self.message.receiverName;
     }
+    
+    // if senderType = Contact then nameStr = self.message.se
     
     // the messages objects don't have different first and last namges, just 'name'
     // so we have to get the last word of the name

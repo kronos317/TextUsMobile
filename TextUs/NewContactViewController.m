@@ -136,31 +136,85 @@
     if ([Utils notConnectedShowAlert:YES fromVC:self]) {
         return;
     }
-
+    
     [self setupViewBusy:YES];
+
+    
+    // first, query server for the selected contact phone number. if it exists, show error to user
+    
+    // need to clean the phone string to remove all but numbers, then add a "1" to the front
+    
+    NSString *origString = _phoneField.text;
+    NSString *newString = [[origString componentsSeparatedByCharactersInSet:
+                            [[NSCharacterSet decimalDigitCharacterSet] invertedSet]]
+                           componentsJoinedByString:@""];
+    
+    // only add the "1" if it's not already there
+    NSString *firstChar = [newString substringToIndex:1];
+    if (![firstChar isEqualToString:@"1"]) {
+        newString = [NSString stringWithFormat:@"1%@", newString];
+    }
     
     NSString *urlStr = @"contacts";
-    id params = @{@"phone":_phoneField.text, @"first_name":_firstNameField.text, @"last_name":_lastNameField.text, @"business_name":_businessNameField.text};
+    id params = @{@"q":newString};
     
-    [[AuthAPIClient sharedClient] POST:urlStr parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [[AuthAPIClient sharedClient] GET:urlStr parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         NSLog(@"ResponseObject: %@", responseObject);
         
-        NSArray *contacts = [Utils processContactsResponse:@[responseObject]];
-        TUContact *contact = [contacts objectAtIndex:0];
+        // iterate the contacts from the response and see if this phone number exists
         
-        if (self.delegate && [self.delegate respondsToSelector:@selector(NewContactViewController:createdContact:)]) {
-            [self.delegate NewContactViewController:self createdContact:contact];
+        BOOL exists = NO;
+        if (responseObject && [responseObject isKindOfClass:[NSArray class]] && ((NSArray*)responseObject).count > 0) {
+            NSArray *contacts = [Utils processContactsResponse:responseObject];
+            for (TUContact *contact in contacts) {
+                if ([contact.phone isEqualToString:newString]) {
+                    exists = YES;
+                    break;
+                }
+            }
         }
+       
+        if (!exists) {
+            
+            // contact does not exist, so go ahead and post it to server
+            NSString *urlStr = @"contacts";
+            id params = @{@"phone":_phoneField.text, @"first_name":_firstNameField.text, @"last_name":_lastNameField.text, @"business_name":_businessNameField.text};
+            
+            [[AuthAPIClient sharedClient] POST:urlStr parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+                NSLog(@"ResponseObject: %@", responseObject);
+                
+                NSArray *contacts = [Utils processContactsResponse:@[responseObject]];
+                TUContact *contact = [contacts objectAtIndex:0];
+                
+                if (self.delegate && [self.delegate respondsToSelector:@selector(NewContactViewController:createdContact:)]) {
+                    [self.delegate NewContactViewController:self createdContact:contact];
+                }
+                
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"Error: %@", error);
+                
+                [Utils handleGeneralError:error fromViewController:self];
+                
+                [self setupViewBusy:NO];
+                
+            }];
+        }
+        else {
+            // contact exists, tell user
+            [Utils showAlertWithTitle:@"Contact already exists" message:nil fromViewController:self];
+            [self setupViewBusy:NO];
+        }
+        
+        
+        
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"Error: %@", error);
         
         [Utils handleGeneralError:error fromViewController:self];
-        
-        [self setupViewBusy:NO];
-        
     }];
 }
+
 
 - (void)toggleSubmitButtonActivePhoneText:(NSString*)phoneText firstNameText:(NSString*)firstNameText {
     // phone number must contain 10 or 11 digits

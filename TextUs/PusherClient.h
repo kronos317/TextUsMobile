@@ -11,11 +11,15 @@
 
 #define kPUSHER_APP_KEY @"3c8939d731a24a81a6e6"
 #define kPUSHER_CHANNEL_PREFIX @"private-account_"
+#define kPUSHER_USER_CHANNEL_PREFIX @"private-user_"
 #define kPUSHER_EVENT_NAME @"inbound-message"
 #define kPUSHER_AUTH_URL @"https://app.textus.com/api/channels/authenticate"
 
 @interface PusherClient : NSObject <PTPusherConnectionDelegate, PTPusherDelegate> {
-    __strong PTPusherEventBinding *_pusherBinding;
+    __strong PTPusherEventBinding *_pusherAccountBinding;
+    __strong PTPusherChannel *_pusherAccountChannel;
+    __strong PTPusherChannel *_pusherUserChannel; // used only so server knows user is logged in
+
     NSInteger _subscriptionRetryCount;
 }
 
